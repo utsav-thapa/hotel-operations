@@ -2,16 +2,16 @@ package com.pluralsight;
 
 public class Reservation {
     private String roomType;
-    private int price;
+    private double price;
     int numberOfNights;
     boolean weekend;
     private int reservationTotal;
 
-    public Reservation(String roomType, int price, int numberOfNights, boolean weekend, int reservationTotal) {
+    public Reservation(String roomType, double price, int numberOfNights, boolean isWeekend, int reservationTotal) {
         this.roomType = roomType;
         this.price = price;
         this.numberOfNights = numberOfNights;
-        this.weekend = weekend;
+        this.weekend = isWeekend;
         this.reservationTotal = reservationTotal;
     }
 
@@ -19,11 +19,21 @@ public class Reservation {
         return roomType;
     }
 
-    public int getReservationTotal() {
-        return reservationTotal;
+    public double getReservationTotal() {
+        return getPrice();
     }
 
-    public int getPrice() {
+    public double getPrice() {
+        double price = 0;
+        if (roomType.equalsIgnoreCase("king")) {
+            price = 139.00;
+        }
+        else if (roomType.equalsIgnoreCase("double")) {
+            price = 124.00;
+        }
+        if (weekend) {
+            price = price * 1.1;
+        }
         return price;
     }
 
@@ -32,6 +42,16 @@ public class Reservation {
     }
 
     public void setRoomType(String roomType) {
+        if (roomType.equalsIgnoreCase("king")) {
+            this.roomType = roomType;
+        } else if (roomType.equalsIgnoreCase("double")) {
+            this.roomType = roomType;
+        }
+        else {
+            System.err.println("Wrong room type.");
+
+
+        }
         this.roomType = roomType;
     }
 
@@ -39,7 +59,7 @@ public class Reservation {
         this.numberOfNights = numberOfNights;
     }
 
-    public void setWeekend(boolean weekend) {
-        this.weekend = weekend;
+    public void setWeekend(boolean isWeekend) {
+        this.weekend = isWeekend;
     }
 }
