@@ -49,8 +49,6 @@ public class Reservation {
         }
         else {
             System.err.println("Wrong room type.");
-
-
         }
         this.roomType = roomType;
     }

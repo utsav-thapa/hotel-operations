@@ -6,6 +6,13 @@ public class Main {
 
         int beds = room.getNumberOfBeds();
 
+        Employee ut = new Employee(1,"Utsav","App. Dev",40.00);
+
+        ut.punchIn(1);
+        ut.punchOut(50);
+
+        System.out.println(ut.getTotalPay());
+
     }
 
 }
