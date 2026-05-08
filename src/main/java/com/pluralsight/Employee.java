@@ -72,6 +72,9 @@ public class Employee {
         this.hoursWorked = todayHours + this.hoursWorked;
 
     }
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
 
 
 }
