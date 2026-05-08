@@ -2,7 +2,7 @@ package com.pluralsight;
 
 public class Main {
     public static void main(String[] args) {
-        Room room = new Room(10,199,true,false,true);
+        Room room = new Room(10,199);
 
         int beds = room.getNumberOfBeds();
 
@@ -13,8 +13,9 @@ public class Main {
 
         System.out.println(ut.getTotalPay());
 
-        room.setCleanRoom(true);
-        System.out.println("is the room ");
+        room.setCleanRoom(false);
+
+        System.out.println("is the room clean? " + !room.isDirty());
 
     }
 

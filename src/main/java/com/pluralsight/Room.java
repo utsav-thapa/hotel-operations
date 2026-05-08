@@ -9,6 +9,7 @@ public class Room {
     private boolean checkIn;
     private boolean checkout;
     private boolean cleanRoom;
+    private boolean cleanedByHousekeeper;
 
     public Room(int numberOfBeds, double price) {
         this.numberOfBeds = numberOfBeds;
@@ -33,37 +34,80 @@ public class Room {
 
     //TODO check again for logical error
     public void setAvailable(boolean available) {
-        if (!isDirty && !this.isOccupied) {
-            this.isAvailable = available;
-        } else {
-            this.isAvailable = !isAvailable;
-        }
+        isAvailable();
     }
 
 
     public void setCheckIn(boolean checkIn) {
         if (checkIn) {
-            isOccupied = true;
-            isDirty = true;
-            this.checkIn = true;
+            if (!this.isDirty && !this.isOccupied) {
+                checkIn();
+            }
         } else {
             this.checkIn = false;
+            this.isOccupied = false;
         }
     }
 
     public void setCheckout(boolean checkout) {
         this.checkout = checkout;
+        if (checkout) {
+            checkout();
+        }
     }
 
     public void setCleanRoom(boolean cleanRoom) {
         if (cleanRoom) {
-            isAvailable = true;
-            isOccupied = false;
-            isDirty = false;
-            this.cleanRoom = true;
+            cleanRoom();
         } else {
             this.cleanRoom = false;
         }
+    }
 
+    private void cleanRoom() {
+        if (!this.isOccupied) {
+            isAvailable = true;
+            isDirty = false;
+            this.cleanedByHousekeeper = true;
+            this.cleanRoom = true;
+        }
+        else {
+            System.out.println("room is still occupied.");
+        }
+    }
+    public boolean isAvailable() {
+        if (!isDirty && !this.isOccupied && this.cleanedByHousekeeper) {
+            this.isAvailable = true;
+        } else {
+            this.isAvailable = !isAvailable;
+        }
+        return this.isAvailable;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
+
+    public boolean isClean() {
+        return (!isDirty);
+    }
+
+    public void checkIn() {
+        this.isOccupied = true;
+        this.isDirty = true;
+        this.checkIn = true;
+    }
+
+    public void checkout() {
+        this.cleanedByHousekeeper = false;
+    }
+
+    public void cleanedByHousekeeper(boolean b) {
+        this.cleanedByHousekeeper = b;
     }
 }
