@@ -13,7 +13,7 @@ public class Main {
 
         System.out.println(ut.getTotalPay());
 
-        room.setCleanRoom(false);
+        room.setCleanRoom(true);
 
         System.out.println("is the room clean? " + !room.isDirty());
 

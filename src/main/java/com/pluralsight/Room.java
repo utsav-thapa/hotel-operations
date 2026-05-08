@@ -64,7 +64,7 @@ public class Room {
         }
     }
 
-    private void cleanRoom() {
+    public void cleanRoom() {
         if (!this.isOccupied) {
             isAvailable = true;
             isDirty = false;
@@ -79,7 +79,7 @@ public class Room {
         if (!isDirty && !this.isOccupied && this.cleanedByHousekeeper) {
             this.isAvailable = true;
         } else {
-            this.isAvailable = !isAvailable;
+            this.isAvailable = false;
         }
         return this.isAvailable;
     }
@@ -104,10 +104,16 @@ public class Room {
     }
 
     public void checkout() {
+        this.isOccupied = false;
         this.cleanedByHousekeeper = false;
     }
 
     public void cleanedByHousekeeper(boolean b) {
         this.cleanedByHousekeeper = b;
+    }
+
+    public boolean isCleanedByHousekeeper() {
+        cleanedByHousekeeper = !isOccupied;
+        return cleanedByHousekeeper;
     }
 }
